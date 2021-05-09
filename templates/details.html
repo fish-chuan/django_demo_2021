@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+{% endblock %}
+
+{% block nav %}
+<div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link active" href="/upload">新增書籍</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="/upload_history">上傳紀錄</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="#">關於我</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      <a href="accounts/logout"><button class="btn btn-outline-success">Logout</button></a>
+    </span>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 30px;">
+  <div class="row">
+    {% if book %}
+    <div class="col-4">
+      <img src="{{ book.image.url }}" class="img-thumbnail" alt="">
+    </div>
+    <div class="col-1"></div>
+    <div class="col-6">
+      <h2>書籍詳細資料</h2><br><br>
+      <h3>書籍名稱： {{ book.book_name }}</h3>
+      <h3>ISBN： {{ book.isbn }}</h3>
+      <h3>出版日期： {{ book.publish_date }}</h3>
+      <h3>上架日期： {{ book.created_time }}</h3>
+      <h3>最後更新於： {{ book.last_updated }}</h3>
+    </div>
+    {% else %}
+    <div class="col-4">
+      <h2>查無資料！</h2>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
